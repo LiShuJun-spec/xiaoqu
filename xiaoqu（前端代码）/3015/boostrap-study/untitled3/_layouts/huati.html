@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="stylesheet" href="../dist/css/bootstrap.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src=" https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <script src="../dist/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../css/yinghua.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="../js/yinghua.js"></script>
+  <title>Title</title>
+  <style>
+    body{
+      font-family: "Microsoft YaHei";
+    }
+    .head-top{
+      background: #5fa022;
+      padding: 0.8em 0;
+    }
+    .navbar-brand{
+      padding: 0;
+    }
+    .navbar-brand>img{
+      height: auto;
+      width: 250px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    .navbar-default{
+      padding: 1.5em 0;
+      background-color:#f2f0f1 ;
+      box-shadow: 12px -5px 39px -12px;
+    }
+    /*设置导航栏中菜单a链接的样式*/
+    .navbar-default .navbar-nav>li a {
+      top: 10px;
+      padding: 0.5em 3em;
+      text-decoration: none;
+      font-weight:600 ;
+      font-size: 1.2em;
+      color: #919191;
+    }
+    /*设置导航栏菜单的鼠标悬停和获取焦点时的状态*/
+    .navbar-default .navbar-nav>li a:hover,
+    .navbar-default .navbar-nav>li a:focus{
+      background: #d96b66;
+      color: white;
+      border-radius: 3px;
+    }
+    /*  设置导航栏右侧a链接(0.00)的颜色*/
+    .navbar-right >a{
+      color: #d96b66;
+    }
+    .form-control{
+      color:rebeccapurple;
+      zoom:1 ;/*触发IE下块级元素*/
+      filter:alpha(opacity=80);
+      -moz-opacity:0.8;
+      opacity:0.8;
+    }
+    /*  媒体查询：当视口小于970px的时候，导航栏菜单字体变小 避免了换行的问题*/
+    @media (max-width: 970px) {
+      .navbar-default .navbar-nav>li a{
+        font-size: 1.1em;
+      }
+    }
+  </style>
+  <style>
+    body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;border:none; outline: none;}
+    h1,h2,h3,h4,h5,h6{font-size:100%;}
+    address,cite,dfn,em,var{font-style:normal;}
+    code,kbd,pre,samp{font-family:courier new,courier,monospace;}
+    ul,ol{list-style:none;}
+    a{text-decoration:none;}
+    a:hover, a:visited, a:link, a:active{text-decoration:none;}
+    sup{vertical-align:text-top;}
+    sub{vertical-align:text-bottom;}
+    legend{color:#000;}
+    fieldset,img{border:0;}
+    button,input,select,textarea{font-size:100%;}
+    table{border-collapse:collapse;border-spacing:0;}
+    .clear{clear: both;float: none;height: 0;overflow: hidden;}
+    body{color:#333; font: 12px/1.3 'Arial','Microsoft YaHei';}
+    textarea.hf-text{padding: 0.2cm 0cm;}
+    #pn{width: 550px; height: auto; background: #fff; margin: 0 auto; padding: 20px;}
+    .list0{padding: 20px 0; position: relative; border-top: 1px solid #eee;}
+    .head{width: 60px; float: left;}
+    .head img{width: 60px; height: 60px; }
+    .close{width: 20px; height: 20px; position: absolute; top: 0; right: 0; color: #696e78; font-size: 14px; text-align: center; line-height: 20px;}
+    .close:hover{color: #eb7350;}
+    .content{width: 450px; line-height: 20px; font-size: 14px; margin-left: 70px; }
+    .name{color: #eb7350; }
+    .pic{margin: 5px 0;}
+    .good:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+    .good{*zoom:1;}
+    .date{float:left; color: #808080;}
+    .good a{float: right; color: #808080;}
+    .people{background: #F7F7F7; height: 28px; line-height: 28px; padding-left: 10px; margin: 5px 0;}
+    .comment:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+    .comment{*zoom:1; padding: 10px 0; border-top: 1px solid #eee;}
+    .comment-left{width: 30px; float: left; display: inline; margin-right: 10px;}
+    .comment-left img{width: 30px; height: 30px;}
+    .comment-right{float: left; width: 410px;}
+    .comment-text{line-height: 18px;}
+    .comment-text span{color:#eb7350;}
+    .comment-date{font-size: 12px; line-height: 14px; color: #ccc; position: relative;}
+    .comment-zan{position: absolute; right: 40px; bottom: 0; color: #808080;}
+    .comment-dele{position: absolute; right: 0; bottom: 0; color: #808080;}
+    .hf:after{clear:both;content:'';display:block;width:0;height:0;visibility:hidden;}
+    .hf{*zoom:1;}
+    .hf-text{ border: 1px solid #eee; display: block; height: 30px; width: 438px; padding: 5px; resize: none; color: #ccc; font-size:12px;}
+    .hf-on .hf-text{height: 60px; color: #333; border:1px solid #ff8140;}
+    .hf-btn{float: right; width: 65px; height: 26px; background: #f7f7f7; color: #ccc; font-size: 12px; display: none;}
+    .hf-btn-on{background: #ff8140; color: #fff; }
+    .hf-nub{float: right; padding: 3px 5px; color: #666; display: none;}
+    .hf-on .hf-btn{display: inline;}
+    .hf-on .hf-nub{display: inline;}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="head-top">
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="nabar-header">
+            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt=""></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <span class="sr-only">汉堡按钮</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="zhuye.html">主页</a> </li>
+              <li><a href="canting.html">餐厅</a> </li>
+              <li><a href="jiankang.html">健康</a> </li>
+              <li><a href="huati.html">话题</a> </li>
+              <li><a href="lianxi.html">联系我们</a></li>
+            </ul>
+            <div class="navbar-right">
+              <a href="#">
+                <h3>
+              <span  title="结账" data-toggle="popover" data-placement="bottom" data-content="content" >
+                <div  id="result"></div></span></h3>
+              </a>
+              <!--          <img src="../images/bag.png" alt="#">-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+  </script>
+</header>
+<div class="cherry">
+  <img id="yinghua" src="../images/yinghua.png" alt="" >
+</div>
+<script>
+  $(function(){
+    $('.cherry').Cherry_Blossoms({
+      is_Cherry:true,//是否生成樱花
+      image_min:10,//花瓣最小宽度和高度
+      image_max:50,//花瓣最大宽度和高度
+      time_min:10000,//花瓣最快下坠时间
+      time_max:20000,//花瓣最慢下坠时间
+      interval:500//花瓣生成时间间隔
+    })
+  })
+</script>
+<div class="col-sm-12 col-md-3 left ">
+  <div class="panel panel-default">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <h3 class="text-white text-center"><a class="text-primary">Spice Food博客论坛</a></h3>
+      </h3>
+      <div style="background-color:gray;">
+
+        <!-- start : demo -->
+        <div class="container-fluid" style="background-color:white;">
+          <!--
+               img-responsive：响应式的图片
+               img-thumbnail：给图片加一个圆角的边框
+              -->
+
+          <img src="../images/canting3.jpg" class="img-responsive img-thumbnail center-block" />
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <span class="glyphicon glyphicon-pencil" style="color: rgb(255, 184, 194); font-size: 20px;"> 请留下您的足迹和宝贵的评价</span>
+    </div>
+    <div class="panel-body">
+      <span class="glyphicon glyphicon-star" style="color: rgb(255, 188, 162); font-size: 15px;"> Woc！！这家餐厅是我去过最好的一家！推荐推荐<span class="glyphicon glyphicon-thumbs-up" style="color: rgb(255, 188, 162); font-size: 15px;"> </span></span>
+      <span class="glyphicon glyphicon-tree-conifer" style="color: rgb(255, 188, 162); font-size: 15px;"> 必须打卡北极贝搭蓝旗鱼子酱</span>
+      <span class="glyphicon glyphicon-ok" style="color: rgb(255, 188, 162); font-size: 15px;"> 黎树俊真的太帅啦！！！</span>
+      <span class="glyphicon glyphicon-heart-empty" style="color: rgb(255, 188, 162); font-size: 15px;"> 舔狗日记 4.28 晴<br>昨天你把我删了，我陷入了久久的沉思，我想这其中一定有什么含义，原来你是在欲擒故纵，嫌我不够爱你，无理取闹的你变得更加可爱了，我会坚守我对你的爱的，你放心好啦！么么哒！今天发工资了 发了1839  给你微信转了520  支付宝1314  还剩下5  傍晚给你发了很多消息你没回 刚弹你正在通话中 你让我别烦 别打扰你跟别人 ok好吧没关系宝宝我爱你 所以我不生气 剩下5块我在小卖部买了你爱吃的老坛酸菜牛肉面 给你寄过去了 希望你保护好食欲 我去上班了爱你
+———by LinJingwen
+</span>
+    </div>
+  </div>
+
+  </div>
+
+
+</div>
+<div class="col-sm-12 col-md-9 right p-0 ">
+  <h5></h5>
+  <span class="glyphicon glyphicon-comment" style="color: rgb(226, 118, 170); font-size: 40px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="#" style="color: rgb(226, 118, 100); font-size: 37px;"> <strong> Free For Talking</strong></span>
+  <div class="px-5 py-5">
+    <div class="pr-5">
+      <div style="padding: 50px 700px 10px 100px;" id="xxx">
+        <form class="bs-example bs-example-form" role="form">
+          <div class="input-group input-group-lg ">
+            <span class="input-group-addon" >Name:</span>
+<!--            <textarea type="text" class="form-control" autocomplete="off" maxlength="100" id="necheng" placeholder="客人昵称"></textarea>-->
+            <input type="text" class="form-control " placeholder="客人昵称" id="necheng">
+          </div>
+        </form>
+      </div>
+      <div style="padding: 0px 100px 10px;">
+        <form class="bs-example bs-example-form" role="form">
+          <div class="form-group">
+            <textarea class="form-control form-control-lg" rows="4" placeholder="话题的内容" id="huati"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-lg btn-primary center-block">发送话题</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <ul class="form-control " id="pn">
+    <li class="list0">
+      <a class="close" href="javascript:;">X</a>
+      <div class="head"><img src="images/T1.jpg" alt=""/></div>
+      <div class="content">
+        <p class="text"><span class="name">加拿大电鳗：</span>吴起然就是这个世界上的神~skr~respect~</p>
+        <div class="pic"><img src="images/img1.jpg" alt=""/></div>
+        <div class="good"><span class="date">02-14 23:01</span><a class="dzan" href="javascript:;">赞</a></div>
+        <div class="people" total="2980">2980人觉得很赞</div>
+        <div class="comment-list">
+          <div class="comment" user="self">
+            <div class="comment-left"><img src="images/T1.jpg" alt=""/></div>
+            <div class="comment-right">
+              <div class="comment-text"><span class="user">老王：</span>我住隔壁我姓王</div>
+              <div class="comment-date">02-14 22:00
+                <a class="comment-zan" href="javascript:;" total="23" my="1">23 取消赞</a>
+                <a class="comment-dele" href="javascript:;">回复</a>
+              </div>
+            </div>
+          </div>
+          <div class="comment" user="self">
+            <div class="comment-left"><img src="images/T1.jpg" alt=""/></div>
+            <div class="comment-right">
+              <div class="comment-text"><span class="user">我：</span>我jio得很行</div>
+              <div class="comment-date">02-14 24:00
+                <a class="comment-zan" href="javascript:;" total="0" my="0">赞</a>
+                <a class="comment-dele" href="javascript:;">删除</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hf">
+          <textarea type="text" class="hf-text" autocomplete="off" maxlength="100" >评论…</textarea>
+          <button class="hf-btn">回复</button>
+          <span class="hf-nub">0/100</span>
+        </div>
+      </div>
+    </li>
+    <li class="list0">
+      <a class="close" href="javascript:;">X</a>
+      <div class="head"><img src="images/T2.jpg" alt=""/></div>
+      <div class="content">
+        <p class="text"><span class="name">林静雯：</span>舔狗日记   3.17   阴   我暗恋的人说眼睛疼 所以我买了瓶眼药水寄过去，但他却告诉我他有喜欢的人了 让我别再打扰，距离遥远顺丰都要两天才能到，可他为什么只用了一秒就把眼药水滴进了我眼睛里</p>
+        <div class="pic"><img src="images/img1.jpg" alt=""/></div>
+        <div class="good"><span class="date">03-17 23:01</span><a class="dzan" href="javascript:;">赞</a></div>
+        <div class="people" total="0" style="display: none;"></div>
+        <div class="comment-list">
+          <div class="comment" user="self">
+            <div class="comment-left"><img src="images/T2.jpg" alt=""/></div>
+            <div class="comment-right">
+              <div class="comment-text"><span class="user">我：</span>爷看哭了...</div>
+              <div class="comment-date">03-17 24:00
+                <a class="comment-zan" href="javascript:;" total="286" my="1">286 取消赞</a>
+                <a class="comment-dele" href="javascript:;">删除</a>
+              </div>
+            </div>
+          </div>
+          <div class="comment" user="self">
+            <div class="comment-left"><img src="images/T1.jpg" alt=""/></div>
+            <div class="comment-right">
+              <div class="comment-text"><span class="user">我：</span>我jio得很行</div>
+              <div class="comment-date">03-17 24:00
+                <a class="comment-zan" href="javascript:;" total="0" my="0">赞</a>
+                <a class="comment-dele" href="javascript:;">删除</a>
+              </div>
+            </div>
+          </div>
+          <div class="comment" user="self">
+            <div class="comment-left"><img src="images/T1.jpg" alt=""/></div>
+            <div class="comment-right">
+              <div class="comment-text"><span class="user">老王：</span>最终还是一个人扛下了所有</div>
+              <div class="comment-date">03-18 22:00
+                <a class="comment-zan" href="javascript:;" total="36" my="1">36 取消赞</a>
+                <a class="comment-dele" href="javascript:;">回复</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hf">
+          <textarea type="text" class="hf-text" autocomplete="off" maxlength="100">评论…</textarea>
+          <button class="hf-btn">回复</button>
+          <span class="hf-nub">0/100</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <script type="text/javascript">
+    //在页面加载完后立即执行多个函数。
+    function addloadEvent(func){
+      var oldonload=window.onload;
+      if(typeof window.onload !="function"){
+        window.onload=func;
+      }
+      else{
+        window.onload=function(){
+          if(oldonload){
+            oldonload();
+          }
+          func();
+        }
+      }
+    }
+    addloadEvent(b);
+    function b(){
+      var pn=document.getElementById("pn");
+      var lists=pn.children;
+      //删除当前节点
+      function remove(node){
+        node.parentNode.removeChild(node);
+      }
+      //上面的点赞
+      function praisebox(box,el){
+        //获取赞数量容器
+        var praise=box.getElementsByClassName("people")[0];
+        //获取容器当前total值
+        var total=parseInt(praise.getAttribute("total"));
+        //获取点击的innerHTML
+        var txt=el.innerHTML;
+        //创建一个新的total存储用
+        var newtotal;
+        //判断点击的文字内容
+        if(txt=="赞"){
+          //total值+1 因为我还没点击赞，所以要点击的时候就多了一个人 total+1
+          newtotal=total+1;
+          //判断赞数量 把相应文字放到赞容器里
+          praise.innerHTML=newtotal==1 ? "我觉得很赞" : "我和" + total +"个人觉得很赞";
+          el.innerHTML="取消赞";
+        }
+        else{
+          //反之total值-1
+          newtotal=total-1;
+          praise.innerHTML=newtotal==0 ? "" : newtotal +"个人觉得很赞";
+          el.innerHTML="赞";
+        }
+        //更新total值
+        praise.setAttribute("total",newtotal);
+        //如果没有人点赞容器隐藏
+        praise.style.display=(newtotal==0) ? "none" : "block";
+      }
+      //回复评论
+      function reply(box){
+        //获取评论框
+        var textarea=box.getElementsByTagName("textarea")[0];
+        //获取包含所有评论的容器
+        var comment=box.getElementsByClassName("comment-list")[0];
+        //创建新的评论div
+        var div=document.createElement("div");
+        //赋类名
+        div.className="comment";
+        //设置属性
+        div.setAttribute("user","self");
+        //获取每条评论的innerHTML结构，每次只替换textarea的输入内容和 当前发送时间
+        var html='<div class="comment-left">'+'<img src="images/T2.jpg" alt=""/>'+'</div>'+
+          '<div class="comment-right">'+
+          '<div class="comment-text"><span>我：</span>'+textarea.value+'</div>'+
+          '<div class="comment-date">'+
+          getTime()+
+          '<a class="comment-zan" href="javascript:;" total="0" my="0">赞</a>'+
+          '<a class="comment-dele" href="javascript:;">删除</a>'+
+          '</div>'+
+          '</div>';
+        //插入到新建的评论div
+        div.innerHTML=html;
+        //把新评论插入到评论列表
+        comment.appendChild(div);
+        //评论后初始化textarea输入框
+        textarea.value="评论…";
+        textarea.parentNode.className="hf";
+      }
+      //获取当前时间回复评论时调用
+      function getTime(){
+        var t=new Date();
+        var y=t.getFullYear();
+        var m=t.getMonth()+1;
+        var d=t.getDate();
+        var h=t.getHours();
+        var mi=t.getMinutes();
+        m=m<10?"0"+m:m;
+        d=d<10?"0"+d:d;
+        h=h<10?"0"+h:h;
+        mi=mi<10?"0"+mi:mi;
+        return y+"-"+m+"-"+d+""+h+":"+mi;
+      }
+      //回复里点赞
+      function praiseReply(el){
+        //获取当前total值 也就是所有点赞数量
+        var total=parseInt(el.getAttribute("total"));
+        //获取当前my值 我的点赞
+        var my=parseInt(el.getAttribute("my"));
+        //创建新的total
+        var newtotal;
+        //判断my=0就是我准备要点赞
+        if(my==0){
+          //我点了赞总数量就要+1
+          newtotal=total+1;
+          //更新total值
+          el.setAttribute("total",newtotal);
+          //更新my值
+          el.setAttribute("my",1);
+          //更新文字 就是我点了后 文字就是取消赞了
+          el.innerHTML=newtotal+" 取消赞";
+        }else{
+          //反之-1
+          newtotal=total-1;
+          el.setAttribute("total",newtotal);
+          el.setAttribute("my",0);
+          el.innerHTML=(newtotal==0)?" 赞":newtotal+" 赞";
+        }
+      }
+      //操作回复
+      function operateReply(el){
+        //每条评论
+        var comment=el.parentNode.parentNode.parentNode;
+        //整个状态
+        var box=comment.parentNode.parentNode.parentNode;
+        //评论框
+        var textarea=box.getElementsByTagName("textarea")[0];
+        //名字
+        var user=comment.getElementsByClassName("user")[0];
+        //点击的innerHTML
+        var txt=el.innerHTML;
+        //判断当前点击的是否为回复
+        if(txt=="回复"){
+          //评论框触发焦点事件 也就是变高
+          textarea.onfocus();
+          //内容变为回复+当前人的名字
+          textarea.value="回复 "+user.innerHTML;
+          //调用键盘事件
+          textarea.onkeyup();
+        }else{
+          //否则就是删除节点
+          remove(comment);
+        }
+      }
+      //遍历所有状态消息
+      for(var i=0;i<lists.length;i++){
+        //全部事件代理
+        lists[i].onclick=function(e){
+          //获取当前点击事件
+          var e=e||window.event;
+          var el=e.srcElement;
+          if(!el){
+            el=e.target;//兼容火狐
+          }
+          //判断点击的类名
+          switch(el.className){
+            //关闭整个状态
+            case "close":
+              remove(el.parentNode);
+              break;
+            //上面的点赞
+            case "dzan":
+              praisebox(el.parentNode.parentNode.parentNode,el);
+              break;
+            //回复评论
+            case "hf-btn hf-btn-on":
+              reply(el.parentNode.parentNode.parentNode);
+              break;
+            //每条评论中点赞
+            case "comment-zan":
+              praiseReply(el);
+              break;
+            case "comment-dele":
+              operateReply(el);
+              break;
+          }
+        }
+        var textarea=lists[i].getElementsByClassName("hf-text")[0];
+        //焦点事件
+        textarea.onfocus=function(){
+          this.parentNode.className='hf hf-on';
+          this.value = this.value == '评论…' ? '' : this.value;
+        }
+        //失焦事件
+        textarea.onblur=function(){
+          if(this.value==''){
+            this.parentNode.className='hf';
+            this.value ='评论…';
+          }
+        }
+        //键盘事件
+        textarea.onkeyup=function(){
+          var len=this.value.length;
+          var textParentNode=this.parentNode;
+          var textBtn=textParentNode.children[1];
+          var textNub=textParentNode.children[2];
+          if(len==0 /*|| len>100*/){
+            textBtn.className="hf-btn";
+          }else{
+            textBtn.className="hf-btn hf-btn-on";
+            /*this.style.color="#333"; */
+          }
+          textNub.innerHTML=len+"/100";
+        }
+      }
+      //遍历结束
+    }
+  </script>
+</div>
+
+</body>
+
+</html>
+

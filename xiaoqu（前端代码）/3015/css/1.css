@@ -1,0 +1,118 @@
+#hh{
+    background-color: wheat;
+    border: 10px solid rgba(238, 0, 0,0.5);
+
+}
+#text{
+    color: rgb(182, 0, 13);
+    background-color: rgba(255, 255, 255,0.5);
+    border: 3px solid rgba(0,0, 0,0.5);;
+    width: 300px;
+    height: 30px;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 12px;
+}
+
+#qrcode{
+    width:250px;
+    height:250px;
+    display: block;
+    margin: auto;
+    margin-top:30px;
+}
+#bt{
+    background-color: rgb(138, 167, 240); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: auto;
+    margin-top:50px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+#bt:hover{
+    background-color: rgb(238, 189, 120);
+    padding: 10px 27px;
+    border:5px solid rgba(255, 219, 255,1);
+}
+.money{
+     width: 150px;
+    height: 35px;
+    border: solid rgba(238, 0, 0,0.5);
+    display: block;
+   margin: auto;
+
+}
+
+.pay1{
+    background-color:green; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: auto;
+    margin-top:50px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+.pay2{
+    background-color: rgb(138, 167, 240); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: auto;
+    margin-top:50px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+.meishi{
+    background-color:rgb(224, 180, 255); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: auto;
+    margin-top:50px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+.shuguo{
+    background-color: rgb(255, 194, 6); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: auto;
+    margin-top:50px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+.tupian1{
+    width: 550px;
+    height: 367px;
+    overflow:hidden
+}
+.tupian2{
+    width: 550px;
+    height: 367px;
+    overflow:hidden
+}

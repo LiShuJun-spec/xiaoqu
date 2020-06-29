@@ -1,0 +1,4 @@
+前端：css，bootstrap，html，jQuery，js，E charts，qrcode
+后端：Springboot，mybatis，MySQL
+数据交互：axios，json
+后台前端：Vue.js，node.js

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="../dist/css/bootstrap.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src=" https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <script src="../dist/js/bootstrap.js"></script>
+  <title>Title</title>
+  <style>
+    body{
+      font-family: "Microsoft YaHei";
+    }
+    .head-top{
+      background: #5fa022;
+      padding: 0.8em 0;
+    }
+    .navbar-brand{
+      padding: 0;
+    }
+    .navbar-brand>img{
+      height: auto;
+      width: 250px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    .navbar-default{
+      padding: 1.5em 0;
+      background-color:#f2f0f1 ;
+      box-shadow: 12px -5px 39px -12px;
+    }
+    /*设置导航栏中菜单a链接的样式*/
+    .navbar-default .navbar-nav>li a {
+      top: 10px;
+      padding: 0.5em 3em;
+      text-decoration: none;
+      font-weight:600 ;
+      font-size: 1.2em;
+      color: #919191;
+    }
+    /*设置导航栏菜单的鼠标悬停和获取焦点时的状态*/
+    .navbar-default .navbar-nav>li a:hover,
+    .navbar-default .navbar-nav>li a:focus{
+      background: #d96b66;
+      color: white;
+      border-radius: 3px;
+    }
+    /*  设置导航栏右侧a链接(0.00)的颜色*/
+    .navbar-right >a{
+      color: #d96b66;
+    }
+    /*  媒体查询：当视口小于970px的时候，导航栏菜单字体变小 避免了换行的问题*/
+    @media (max-width: 970px) {
+      .navbar-default .navbar-nav>li a{
+        font-size: 1.1em;
+      }
+    }
+  </style>
+  <style>
+    body,button,input,select{
+      font-family: "Microsoft YaHei";
+    }
+    .search{
+      background-image: url("../images/canting.jpg");
+      -webkit-background-size: cover;
+      background-size: cover;
+
+      min-height: 600px;
+      margin-top: -20px;
+
+
+    }
+
+    .login-center {
+      height: 100vh;
+    }
+
+    /*.form-control{*/
+    /*  background-color: rgba(0,0,0,0);*/
+    /*}把输出框背景设置成透明*/
+
+
+    .form-control{
+      color:rebeccapurple;
+      zoom:1 /*触发IE下块级元素*/
+      filter:alpha(opacity=80);
+      -moz-opacity:0.8;
+      opacity:0.8;
+    }
+
+    @media (max-width: 768px) {
+      .reservation{
+        padding: 20px;
+        width: 90%;
+      }
+
+    }
+
+    /*#xxx{*/
+    /*}*/
+    /*#xxx input{*/
+    /*  color:red;*/
+    /*  zoom:1 !*触发IE下块级元素*!*/
+    /*  filter:alpha(opacity=80);*/
+    /*  -moz-opacity:0.8;*/
+    /*  opacity:0.8;*/
+    /*}不影响字体的透明*/
+  </style>
+</head>
+<body>
+<header>
+  <div class="head-top">
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="nabar-header">
+            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt=""></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <span class="sr-only">汉堡按钮</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="zhuye.html">主页</a> </li>
+              <li><a href="canting.html">餐厅</a> </li>
+              <li><a href="jiankang.html">健康</a> </li>
+              <li><a href="huati.html">话题</a> </li>
+              <li><a href="lianxi.html">联系我们</a></li>
+            </ul>
+            <div class="navbar-right">
+              <a href="#">
+                <h3>
+              <span  title="结账" data-toggle="popover" data-placement="bottom" data-content="content" >
+                <div  id="result"></div></span></h3>
+              </a>
+              <!--          <img src="../images/bag.png" alt="#">-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script>
+      $(function () {
+        $("[data-toggle='popover']").popover();
+      });
+    </script>
+</header>
+<div class="search">
+  <div class="row align-items-center justify-content-center login-center">
+
+    <!--header-->
+
+    <div class="col-sm-12 col-md-3 left ">
+
+      <div class="row justify-content-between">
+
+        <div class="col-6 col-sm-5 col-md-12 p-4">
+          <div style="background-color:gray;">
+
+          <!-- start : demo -->
+          <div class="container-fluid" style="background-color:white;">
+            <!--
+                 img-responsive：响应式的图片
+                 img-thumbnail：给图片加一个圆角的边框
+                -->
+
+            <img src="../images/canting3.jpg" class="img-responsive img-thumbnail center-block" />
+          </div>
+          </div>
+          <h3 class="text-white text-center"><a class="text-primary">Spice Food</a></h3>
+          <h5 class="text-warning text-danger text-right">—西式印象主题餐厅</h5>
+        </div>
+
+        <div class="col-6 col-sm-5 col-md-12 p-5 p-md-4">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"
+                     href="#collapseOne">
+                    酒店年份
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  创始于1998
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"
+                     href="#collapseTwo">
+                    订座电话
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                  13059245565
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"
+                     href="#collapseThree">
+                    电子邮箱
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                  1363330973@qq.com
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"
+                     href="#collapseFour">
+                    地址
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                  仙女座星云M78星
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!--content-->
+    <div class="col-sm-12 col-md-9 right p-0 ">
+        <h5></h5>
+      <span class="glyphicon glyphicon-envelope" style="color: rgb(255, 118, 35); font-size: 37px;"><strong>  Suggestion Box</strong></span>
+      <div class="px-5 py-5">
+        <div class="pr-5">
+          <div style="padding: 100px 700px 10px 100px;" id="xxx">
+            <form class="bs-example bs-example-form" role="form">
+              <div class="input-group input-group-lg ">
+                <span class="input-group-addon" >Name:</span>
+                <input type="text" class="form-control " placeholder="客人尊称" >
+              </div>
+            </form>
+          </div>
+          <div style="padding: 5px 700px 10px 100px;">
+            <form class="bs-example bs-example-form" role="form">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">Phone:</span>
+                <input type="text" class="form-control" placeholder="联系方式">
+              </div>
+            </form>
+          </div>
+          <div style="padding: 5px 100px 10px;">
+            <form class="bs-example bs-example-form" role="form">
+          <div class="form-group">
+            <textarea class="form-control form-control-lg" rows="6" placeholder="反馈的内容"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-lg btn-primary">发送</button>
+
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="../dist/css/bootstrap.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src=" https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <script src="../dist/js/bootstrap.js"></script>
+  <title>Title</title>
+  <style>
+    body{
+      font-family: "Microsoft YaHei";
+    }
+    .head-top{
+      background: #5fa022;
+      padding: 0.8em 0;
+    }
+    .navbar-brand{
+      padding: 0;
+    }
+    .navbar-brand>img{
+      height: auto;
+      width: 250px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    .navbar-default{
+      padding: 1.5em 0;
+      background-color:#f2f0f1 ;
+      box-shadow: 12px -5px 39px -12px;
+    }
+    /*设置导航栏中菜单a链接的样式*/
+    .navbar-default .navbar-nav>li a {
+      top: 10px;
+      padding: 0.5em 3em;
+      text-decoration: none;
+      font-weight:600 ;
+      font-size: 1.2em;
+      color: #919191;
+    }
+    /*设置导航栏菜单的鼠标悬停和获取焦点时的状态*/
+    .navbar-default .navbar-nav>li a:hover,
+    .navbar-default .navbar-nav>li a:focus{
+      background: #d96b66;
+      color: white;
+      border-radius: 3px;
+    }
+    /*  设置导航栏右侧a链接(0.00)的颜色*/
+    .navbar-right >a{
+      color: #d96b66;
+    }
+    /*  媒体查询：当视口小于970px的时候，导航栏菜单字体变小 避免了换行的问题*/
+    @media (max-width: 970px) {
+      .navbar-default .navbar-nav>li a{
+        font-size: 1.1em;
+      }
+    }
+  </style>
+  <style>
+    body,button,input,select{
+      font-family: "Microsoft YaHei";
+    }
+    .search{
+      background-image: url("../images/banner.jpg");
+      -webkit-background-size: cover;
+      background-size: cover;
+
+      min-height: 600px;
+      margin-top: -20px;
+    }
+
+    .reservation{
+      padding: 60px;
+      width: 50%;
+      background: rgba(255,255,255,.7);
+      margin: 0 auto;
+      margin-top: 15px;
+      font-weight: 500;
+      color: #f2f0f1;
+      font-size: 1.2em;
+      outline: none;
+    }
+    .btn{
+      width: 50%;
+      background-color: #d96b66;
+      color: #fff;
+      padding: 5px;
+      border: none;
+      border-radius: 4px;
+    }
+    .form-control{
+      color: #8e908d;
+    }
+    .searchbtn{
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .reservation{
+        padding: 20px;
+        width: 90%;
+      }
+
+    }
+  </style>
+  <style>
+    body,h3,h6{
+      font-family: "Microsoft YaHei";
+    }
+    .hot{
+      padding: 3em 0;
+      border: 1px solid #eee;
+      margin: 0;
+    }
+    .hot h3{
+      margin: 0 0 1em;
+      color: #1a1a1a;
+      font-weight: 600;
+      font-size: 1.5em;
+      padding: 0 0 0.5em;
+      border-bottom: 2px solid #eee;
+    }
+    .hot p{
+      color: #5fa022;
+      font-size: 1em;
+      font-weight: 400;
+      line-height: 1.8em;
+      margin: 1em 0;
+    }
+    .hot h6{
+      color: #c15162;
+      font-size: 1.5em;
+      font-width:400 ;
+      margin: 0.3em 0;
+    }
+    a.morebtn{
+      display: block;
+      font-size: 1em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 400;
+      background: #d96b66;
+      padding: 10px 18px;
+      transition: all 0.5s ease;
+      border-radius: 3px;
+    }
+    a.morebtn:hover{
+      background: #5fa022;
+    }
+    @media (max-width: 1024px) {
+      a.morebtn{
+        max-width: 410px;
+      }
+
+    }
+  </style>
+  <style>
+    body{
+      font-family: "Microsoft YaHei";
+    }
+    .navbar-brand>img{
+      height: auto;
+      width: 250px;
+      margin-right: 5px;
+      margin-top: 5px;
+    }
+    .nav-pills>li>a{
+      color: #8e908d;
+    }
+    .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+      color: #fff;
+      background-color: #5a9522;
+    }
+    .choose{
+      border: 1px solid silver;
+    }
+    .tab-content{
+      margin: 5px;
+      text-align: center;
+    }
+  </style>
+  <style>
+    .pic{
+      margin: 0 auto;
+      width: 800px;
+      padding: 20px;
+    }
+    .carousel{
+      background: white;
+    }
+    @media (max-width: 992px) {
+      .pic{
+        width: 415px;
+      }
+    }
+  </style>
+  <style>
+    /*悬浮*/
+    .gotop{
+      position: fixed;
+      bottom: 10%;
+      z-index: 100;
+      width: 2rem;
+      background: rgba(167, 5, 65, 0.38);
+      color: #fff;
+      padding: .5rem;
+      border-radius: .5rem;
+      font-size: .9rem;
+      text-decoration: none;}
+    .gotop:hover,.gotop:active{
+      background: rgba(167, 5, 65, 0.56);
+      color: #fff;
+      text-decoration: none}
+
+  </style>
+  <style type="text/css">
+    /*窗口*/
+    #choiceWindow {
+      display: none;
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      width: 30%;
+      height: 55%;
+      padding: 20px;
+      border: 3px solid #ccc;
+      background-color: white;
+      z-index:2;
+      overflow: auto;
+    }
+    #backGround {
+      display: none;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 1100px;
+      background-color: black;
+      z-index:1;
+      -moz-opacity: 0.8;
+      opacity:.80;
+      filter: alpha(opacity=88);
+    }
+    #x:hover {cursor: pointer;color: rgb(55,198,192);}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="head-top">
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="nabar-header">
+            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt=""></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <span class="sr-only">汉堡按钮</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="zhuye.html">主页</a> </li>
+              <li><a href="canting.html">餐厅</a> </li>
+              <li><a href="jiankang.html">健康</a> </li>
+              <li><a href="huati.html">话题</a> </li>
+              <li><a href="lianxi.html">联系我们</a></li>
+            </ul>
+            <div class="navbar-right">
+              <a href="#">
+                <h3>
+              <span  title="结账" data-toggle="popover" data-placement="bottom" data-content="content" >
+                <div  id="result"></div></span></h3>
+              </a>
+              <!--          <img src="../images/bag.png" alt="#">-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script>
+      $(function () {
+        $("[data-toggle='popover']").popover();
+      });
+    </script>
+</header>
+<div class="search">
+  <div class="container">
+    <div class="reservation">
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-sm-12 col-md-12" role="form">
+            <input type="text" id="name" class="form-control input-lg" placeholder="请输入餐厅名称">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 col-md-12 col-lg-12"></div>
+          <select id="country" class="form-control input-lg">
+            <option value="null"> 请选择城市</option>
+            <option value="bj"> 北京</option>
+            <option value="sh"> 上海</option>
+            <option value="sz"> 深圳</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="searchbtn">
+            <button type="submit" class="btn btn-success btn-lg">
+              <img src="../images/search-icon.png" alt="">&nbsp;搜索
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="hot">
+  <div class="container">
+    <div class="col-md-4">
+      <h3>米西奈斯煎饼</h3>
+      <img src="../images/4.jpg" class="img-responsive" alt="">
+      <div>
+        <p class="glyphicon glyphicon-thumbs-up">两种口味可供选择</p>
+        <div class="cur">
+          <span><button type="button" class="btn" onclick="my1()" id="my1">添加到购物车 <button type="button" class="btn" onclick="mi1()" id="mi1">取消订单</button></button> </span>
+          <span>
+            <h6>一口价：￥45.00</h6>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>蒙特斯大虾</h3>
+      <img src="../images/1.jpg" class="img-responsive" alt="">
+      <div>
+        <p class="glyphicon glyphicon-thumbs-up">两种口味可供选择</p>
+        <div class="cur">
+          <span><button type="button" class="btn" onclick="my2()" id="my2">添加到购物车 <button type="button" class="btn" onclick="mi2()" id="mi2">取消订单</button></button></span>
+          <span>
+            <h6>一口价：￥55.00</h6>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>香酥麻麦批</h3>
+      <img src="../images/3.jpg" class="img-responsive" alt="">
+      <div>
+        <p class="glyphicon glyphicon-thumbs-up">两种口味可供选择</p>
+        <div class="cur">
+          <span><button type="button" class="btn" onclick="my3()" id="my3">添加到购物车 <button type="button" class="btn" onclick="mi3()" id="mi3">取消订单</button></button></span>
+          <span>
+            <h6>一口价：￥65.00</h6>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="choose">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="navbar-header hidden-xs">
+          <a href="#" class="navbar-brand">
+            <img src="../images/title.jpg" alt="">
+          </a>
+        </div>
+        <ul class="nav nav-pills navbar-right" role="tablist" style="margin-right: 0px;">
+          <li role="presentation" class="active"><a href="#dishes" role="tab" data-toggle="tab">菜品</a> </li>
+          <li role="presentation"><a href="#drink" role="tab" data-toggle="tab">饮品</a> </li>
+          <li role="presentation"><a href="#staple" role="tab" data-toggle="tab">主食</a> </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tab-content">
+          <div class="tab-pane active" id="dishes" role="tabpanel">
+            <div class="col-md-2 col-sm-4 col-xs-6 ">
+              <img src="../images/products/small01.jpg" alt="">
+              <p>卡奈芝士鸡柳</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi4()" id="mi4"></span></a>
+                ￥145.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my4()" id="my4"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small02.jpg" alt="">
+              <p>古丽饼</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi5()" id="mi5"></span></a>
+                ￥165.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my5()" id="my5"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small04.jpg" alt="">
+              <p>力滋卡猪排</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi6()" id="mi6"></span></a>
+                ￥165.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my6()" id="my6"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small02.jpg" alt="">
+              <p>菲力饼</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi7()" id="mi7"></span></a>
+                ￥165.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my7()" id="my7"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item"></div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item"></div>
+          </div>
+          <div class="tab-pane active" id="drink" role="tabpanel">
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small03.jpg" alt="">
+              <p>抹茶绿滩</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi8()" id="mi8"></span></a>
+                ￥98.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my8()" id="my8"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small03.jpg" alt="">
+              <p>绿色湖畔</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi9()" id="mi9"></span></a>
+                ￥98.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my9()" id="my9"></span></a>
+              </p>
+            </div>
+          </div>
+          <div class="tab-pane active" id="staple" role="tabpanel">
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small05.jpg" alt="">
+              <p>零卡沙拉</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi10()" id="mi10"></span></a>
+                ￥56.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my10()" id="my10"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small06.jpg" alt="">
+              <p>南斯拉夫酱饼</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi11()" id="mi11"></span></a>
+                ￥56.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my11()" id="my11"></span></a>
+              </p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 product-item">
+              <img src="../images/products/small09.jpg" alt="">
+              <p>澳龙虾球意面</p>
+              <p>
+                <a><span class="glyphicon glyphicon-minus" onclick="mi12()" id="mi12"></span></a>
+                ￥56.0
+                <a><span class="glyphicon glyphicon-plus" onclick="my12()" id="my12"></span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container hidden-xs">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="pic">
+          <img src="../images/1p.jpg" alt="">
+          <img src="../images/2p.jpg" alt="">
+          <img src="../images/3p.png" alt="">
+          <img src="../images/4p.jpg" alt="">
+          <img src="../images/5p.jpg" alt="">
+          <img src="../images/6p.jpg" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="pic">
+          <img src="../images/2p.jpg" alt="">
+          <img src="../images/3p.png" alt="">
+          <img src="../images/4p.jpg" alt="">
+          <img src="../images/5p.jpg" alt="">
+          <img src="../images/6p.jpg" alt="">
+          <img src="../images/7p.jpg" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="pic">
+          <img src="../images/3p.png" alt="">
+          <img src="../images/4p.jpg" alt="">
+          <img src="../images/5p.jpg" alt="">
+          <img src="../images/6p.jpg" alt="">
+          <img src="../images/7p.jpg" alt="">
+          <img src="../images/8p.jpg" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="pic">
+          <img src="../images/4p.jpg" alt="">
+          <img src="../images/5p.jpg" alt="">
+          <img src="../images/6p.jpg" alt="">
+          <img src="../images/7p.jpg" alt="">
+          <img src="../images/8p.jpg" alt="">
+          <img src="../images/1p.jpg" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="pic">
+          <img src="../images/5p.jpg" alt="">
+          <img src="../images/6p.jpg" alt="">
+          <img src="../images/7p.jpg" alt="">
+          <img src="../images/8p.jpg" alt="">
+          <img src="../images/1p.jpg" alt="">
+          <img src="../images/2p.jpg" alt="">
+        </div>
+      </div>
+      <div class="item">
+        <div class="pic">
+          <img src="../images/6p.jpg" alt="">
+          <img src="../images/7p.jpg" alt="">
+          <img src="../images/8p.jpg" alt="">
+          <img src="../images/1p.jpg" alt="">
+          <img src="../images/2p.jpg" alt="">
+          <img src="../images/3p.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <a href="#myCarousel" class="carousel-control left" role="button" data-slide="prev">&lsaquo;</a>
+    <a href="#myCarousel" class="carousel-control right" role="button" data-slide="next">&rsaquo;</a>
+  </div>
+</div>
+<div class="caidan">
+  <div class="float-right"><a class="gotop d-none d-sm-block" href="javascript:scroll(0,0)" id="btn1">查看订单</a> </div>
+  <div>
+    <div id="choiceWindow">
+      <label id="x" style="position: absolute;top:2px;left: 95%;font-size: 25px;">x</label>
+      <form>
+        <label>已点菜单：</label>&nbsp &nbsp  &nbsp
+<!--        <select>-->
+<!--          <option value="2017-2018-1">2017-2018-1</option>-->
+<!--          <option value="2017-2018-2">2017-2018-2</option>-->
+<!--        </select><br><br>-->
+          <table id="tab"></table>
+        <table id="tab1"></table>
+        <table id="tab2"></table>
+        <table id="tab3"></table>
+        <table id="tab4"></table>
+        <table id="tab5"></table>
+        <table id="tab6"></table>
+        <table id="tab7"></table>
+        <table id="tab8"></table>
+        <table id="tab9"></table>
+        <table id="tab10"></table>
+        <table id="tab11"></table>
+        <a>
+          <h3>
+              <p>合计：</p><span  title="结账" data-toggle="popover" data-placement="bottom" data-content="支持微信·支付宝支付" >
+                <div  id="result3"></div></span></h3>
+        </a>
+      </form>
+      <button type="button" class="btn btn-primary"
+              data-toggle="button" id="result2"> 结账
+      </button>
+    </div>
+    <div id="backGround"></div>
+  </div>
+</div>
+</body>
+<script>
+  let person = {
+    firstName : "￥",
+    a: 0.0
+  }
+
+  function my1() {
+    alert("米西奈斯煎饼添加成功！");
+    person.a = person.a + 45.00;
+
+    //显示结果
+    showResult();
+  }
+  function mi1() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 45.00;
+      alert("米西奈斯煎饼删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my2() {
+    alert("蒙特斯大虾添加成功");
+    person.a = person.a + 55.00;
+    //显示结果
+    showResult();
+  }
+  function mi2() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 55.00;
+      alert("蒙特斯大虾删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my3() {
+    alert("香酥麻麦批添加成功");
+    person.a = person.a + 65.00;
+    //显示结果
+    showResult();
+  }
+  function mi3() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 65.00;
+      alert("香酥麻麦批删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my4() {
+    alert("卡奈芝士鸡柳添加成功");
+    person.a = person.a + 145.00;
+    //显示结果
+    showResult();
+  }
+  function mi4() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 145.00;
+      alert("卡奈芝士鸡柳删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my5() {
+    alert("古丽饼添加成功");
+    person.a = person.a + 165.00;
+    //显示结果
+    showResult();
+  }
+  function mi5() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 165.00;
+      alert("古丽饼删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my6() {
+    alert("力滋卡猪排添加成功");
+    person.a = person.a +165.00;
+    //显示结果
+    showResult();
+  }
+  function mi6() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 165.00;
+      alert("力滋卡猪排删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my7() {
+    alert("古丽饼添加成功");
+    person.a = person.a + 165.00;
+    //显示结果
+    showResult();
+  }
+  function mi7() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 165.00;
+      alert("古丽饼删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my8() {
+    alert("抹茶绿滩添加成功");
+    person.a = person.a + 98.00;
+    //显示结果
+    showResult();
+  }
+  function mi8() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 98.00;
+      alert("抹茶绿滩删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my9() {
+    alert("绿色湖畔添加成功");
+    person.a = person.a + 98.00;
+    //显示结果
+    showResult();
+  }
+  function mi9() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 98.00;
+      alert("绿色湖畔删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my10() {
+    alert("零卡沙拉添加成功");
+    person.a = person.a + 56.00;
+    //显示结果
+    showResult();
+  }
+  function mi10() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 56.00;
+      alert("零卡沙拉删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my11() {
+    alert("南斯拉夫酱饼添加成功");
+    person.a = person.a + 56.00;
+    //显示结果
+    showResult();
+  }
+  function mi11() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 56.00;
+      alert("南斯拉夫酱饼删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+  function my12() {
+    alert("澳龙虾球意面添加成功");
+    person.a = person.a + 56.00;
+    //显示结果
+    showResult();
+  }
+  function mi12() {
+    if (person.a<=0.00){
+      alert("请下单");
+    }
+    else {
+      person.a = person.a - 56.00;
+      alert("澳龙虾球意面删除成功");
+    }
+    //显示结果
+    showResult();
+  }
+
+  //显示结果
+  function showResult() {
+    document.getElementById("result").innerHTML =
+      person.firstName + " " + person.a + " " + "<img src='../images/bag.png' />";
+    document.getElementById("result3").innerHTML =
+      person.firstName + " " + person.a + " " + "<img src='../images/bag.png' />";
+  }
+</script>
+<script language="javascript" type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+<script language="javascript" type="text/javascript" src="/js/popper.min.js" ></script>
+<script language="javascript" type="text/javascript" src="/js/bootstrap.min.js" ></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#btn1").click(function(){
+      $("#choiceWindow").slideDown(300);
+      $("#backGround").show();
+
+    });
+
+    $("#x").click(function(){
+      $("#choiceWindow").slideUp(300);
+      $("#backGround").hide();
+    })
+
+  });
+</script>
+<script>
+  //创建一个html元素
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+    $("#my1").bind("click",function(){
+// 取得table
+      var tab = $("#tab");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="米西奈斯煎饼";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥45.00）";
+      tr.appendChild(td2);
+    });
+
+// 绑定删除行按钮的单击事件
+    $("#mi1").bind("click",function(){
+// 取得table的第一行
+      var tab = $("#tab tr:eq(0)");
+// 删除此行
+      tab.remove();
+    });
+
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my2").bind("click",function(){
+// 取得table
+      var tab1 = $("#tab1");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab1.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="蒙特斯大虾";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥55.00）";
+      tr.appendChild(td2);
+    });
+
+// 绑定删除行按钮的单击事件
+
+    $("#mi2").bind("click",function(){
+// 取得table的第一行
+      var tab1 = $("#tab1 tr:eq(0)");
+// 删除此行
+      tab1.remove();
+    });
+
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my3").bind("click",function(){
+// 取得table
+      var tab2 = $("#tab2");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab2.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="香酥麻麦批";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥65.00）";
+      tr.appendChild(td2);
+    });
+
+// 绑定删除行按钮的单击事件
+
+    $("#mi3").bind("click",function(){
+// 取得table的第一行
+      var tab2 = $("#tab2 tr:eq(0)");
+// 删除此行
+      tab2.remove();
+    });
+
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my4").bind("click",function(){
+// 取得table
+      var tab3 = $("#tab3");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab3.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="卡奈芝士鸡柳";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥145.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi4").bind("click",function(){
+// 取得table的第一行
+      var tab3 = $("#tab3 tr:eq(0)");
+// 删除此行
+      tab3.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my5").bind("click",function(){
+// 取得table
+      var tab4 = $("#tab4");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab4.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="古丽饼";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥165.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi5").bind("click",function(){
+// 取得table的第一行
+      var tab4 = $("#tab4 tr:eq(0)");
+// 删除此行
+      tab4.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my6").bind("click",function(){
+// 取得table
+      var tab5 = $("#tab5");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab5.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="力滋卡猪排";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥165.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi6").bind("click",function(){
+// 取得table的第一行
+      var tab5 = $("#tab5 tr:eq(0)");
+// 删除此行
+      tab5.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my7").bind("click",function(){
+// 取得table
+      var tab6 = $("#tab6");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab6.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="菲力饼";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥165.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi7").bind("click",function(){
+// 取得table的第一行
+      var tab6 = $("#tab6 tr:eq(0)");
+// 删除此行
+      tab6.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my8").bind("click",function(){
+// 取得table
+      var tab7 = $("#tab7");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab7.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="抹茶绿滩";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥98.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi8").bind("click",function(){
+// 取得table的第一行
+      var tab7 = $("#tab7 tr:eq(0)");
+// 删除此行
+      tab7.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my9").bind("click",function(){
+// 取得table
+      var tab8 = $("#tab8");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab8.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="绿色湖畔";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥98.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi9").bind("click",function(){
+// 取得table的第一行
+      var tab8 = $("#tab8 tr:eq(0)");
+// 删除此行
+      tab8.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my10").bind("click",function(){
+// 取得table
+      var tab9 = $("#tab9");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab9.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="零卡沙拉";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥56.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi10").bind("click",function(){
+// 取得table的第一行
+      var tab9 = $("#tab9 tr:eq(0)");
+// 删除此行
+      tab9.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my11").bind("click",function(){
+// 取得table
+      var tab10 = $("#tab10");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab10.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="南斯拉夫酱饼";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥56.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi11").bind("click",function(){
+// 取得table的第一行
+      var tab10 = $("#tab10 tr:eq(0)");
+// 删除此行
+      tab10.remove();
+    });
+  });
+  function $c(tagname){
+    return document.createElement(tagname);
+  }
+  //文档加载完成后要执行的内容
+  $(document).ready(function(){
+//绑定添加行按钮的单击事件
+
+    $("#my12").bind("click",function(){
+// 取得table
+      var tab11 = $("#tab11");
+// 创建tr元素
+      var tr = $c("tr");
+// 为table追加tr元素
+      tab11.append(tr);
+// 创建td元素
+      var td1=$c("td");
+// td元素的内容
+      td1.innerHTML="澳龙虾球意面";
+// 为新追加的tr追加td元素
+      tr.appendChild(td1);
+      var td2=$c("td");
+      td2.innerHTML="X1（￥56.00）";
+      tr.appendChild(td2);
+    });
+// 绑定删除行按钮的单击事件
+
+    $("#mi12").bind("click",function(){
+// 取得table的第一行
+      var tab11 = $("#tab11 tr:eq(0)");
+// 删除此行
+      tab11.remove();
+    });
+  });
+</script>
+</html>

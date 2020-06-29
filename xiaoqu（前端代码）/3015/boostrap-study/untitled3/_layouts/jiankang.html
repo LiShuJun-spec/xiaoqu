@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="../dist/css/bootstrap.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src=" https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <script src="../dist/js/bootstrap.js"></script>
+  <title>Title</title>
+  <style>
+    body{
+      font-family: "Microsoft YaHei";
+    }
+    .head-top{
+      background: #5fa022;
+      padding: 0.8em 0;
+    }
+    .navbar-brand{
+      padding: 0;
+    }
+    .navbar-brand>img{
+      height: auto;
+      width: 250px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    .navbar-default{
+      padding: 1.5em 0;
+      background-color:#f2f0f1 ;
+      box-shadow: 12px -5px 39px -12px;
+    }
+    /*设置导航栏中菜单a链接的样式*/
+    .navbar-default .navbar-nav>li a {
+      top: 10px;
+      padding: 0.5em 3em;
+      text-decoration: none;
+      font-weight:600 ;
+      font-size: 1.2em;
+      color: #919191;
+    }
+    /*设置导航栏菜单的鼠标悬停和获取焦点时的状态*/
+    .navbar-default .navbar-nav>li a:hover,
+    .navbar-default .navbar-nav>li a:focus{
+      background: #d96b66;
+      color: white;
+      border-radius: 3px;
+    }
+    /*  设置导航栏右侧a链接(0.00)的颜色*/
+    .navbar-right >a{
+      color: #d96b66;
+    }
+    /*  媒体查询：当视口小于970px的时候，导航栏菜单字体变小 避免了换行的问题*/
+    @media (max-width: 970px) {
+      .navbar-default .navbar-nav>li a{
+        font-size: 1.1em;
+      }
+    }
+  </style>
+  <style>
+    /* Custom Styles */
+    ul.nav-tabs{
+      width: 140px;
+      margin-top: 20px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    }
+    ul.nav-tabs li{
+      margin: 0;
+      border-top: 1px solid #ddd;
+    }
+    ul.nav-tabs li:first-child{
+      border-top: none;
+    }
+    ul.nav-tabs li a{
+      margin: 0;
+      padding: 8px 16px;
+      border-radius: 0;
+    }
+    ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+      color: #fff;
+      background: #0088cc;
+      border: 1px solid #0088cc;
+    }
+    ul.nav-tabs li:first-child a{
+      border-radius: 4px 4px 0 0;
+    }
+    ul.nav-tabs li:last-child a{
+      border-radius: 0 0 4px 4px;
+    }
+    ul.nav-tabs.affix{
+      top: 30px; /* Set the top position of pinned element */
+    }
+  </style>
+  <script>
+    $(document).ready(function(){
+      $("#myNav").affix({
+        offset: {
+          top: 125
+        }
+      });
+    });
+  </script>
+</head>
+
+
+<body data-spy="scroll" data-target="#myScrollspy">
+<header>
+  <div class="head-top">
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="nabar-header">
+            <a href="#" class="navbar-brand"><img src="../images/logo.png" alt=""></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <span class="sr-only">汉堡按钮</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="zhuye.html">主页</a> </li>
+              <li><a href="canting.html">餐厅</a> </li>
+              <li><a href="jiankang.html">健康</a> </li>
+              <li><a href="huati.html">话题</a> </li>
+              <li><a href="lianxi.html">联系我们</a></li>
+            </ul>
+            <div class="navbar-right">
+              <a href="#">
+                <h3>
+              <span  title="结账" data-toggle="popover" data-placement="bottom" data-content="content" >
+                <div  id="result"></div></span></h3>
+              </a>
+              <!--          <img src="../images/bag.png" alt="#">-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+  </script>
+</header>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Health Eating</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-3" id="myScrollspy">
+      <ul class="nav nav-tabs nav-stacked" id="myNav">
+        <li class="active"><a href="#section-1">1  缘由</a></li>
+        <li><a href="#section-2">2  专家意见</a></li>
+        <li><a href="#section-3">3  健康食物</a></li>
+        <li><a href="#section-4">4  健康认识</a></li>
+        <li><a href="#section-5">5  饮食技巧</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-9">
+      <h2 id="section-1">缘由</h2>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人生在每个阶段都需重视健脑、护脑，因为脑部与身体其他部位有所不同，其生长发育必须给予充分营养，增进益智补脑食物，以尽量使之健康发育、保脑护脑延缓大脑的衰老，一旦营养失调，日后亦不可能用任何方法加以补救。健脑食品是滋补身体的圣品，可是当今社会添加剂泛滥，纯天然的已经是稀有，所以这些食物，如果食用不当，是会致命的。
+      </p>
+      <hr>
+      <h2 id="section-2">专家意见</h2>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有不少专家认为饮食健康对大脑健康有很重要的影响，而且食品营养是家庭能够办到的，也是简易而切实可行的。饮食健脑首先得了解人体脑细胞需要什么营养素。大脑需要的营养素主要有脂质，乃指脂肪中的不饱和脂肪酸，主要为亚油酸和亚麻酸；其次是蛋白质，尤其是蛋白质中的谷胱甘肽，还有糖类，即已被人体消化系统分解成的葡萄糖；以及B族维生素、维生素C、维生素E和钙质。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;父母在给孩子选择健脑食物过程中，要结合孩子的身体实际情况，做到有目的、有针对性地对症进食，只有这样，孩子食用了健脑食品，才能收到良好的效果。</p>
+      <hr>
+      <h2 id="section-3">健康食物</h2>
+      <p>大豆与豆制品</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大豆含有的氨基酸组成与人体需要的相接近，且富含有健脑功效的赖氨酸。黄豆中丰富的卵磷脂是补益大脑物质。大豆制品如豆腐、豆芽都是良好的健脑食品。</p>
+      <p>干果与果仁类</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;坚果的果仁如核桃、栗子、杏仁、花生、黑芝麻、南瓜子等都含有油酸脂和亚油酸脂，是促进大脑发育和加强思维能力的佳品，尤其是核桃和黑芝麻，还含有丰富的B族维生素。拿核桃来说，历来是补充大脑磷、钙质的佳品；而杏仁可助睡眠，帮助人体保持大脑清醒，提高学习和工作效率。干果中龙眼有补心脾、益气血、助精神之功效，能辅治失眠、健忘、神衰，故被赞为“益智果”；荔枝对大脑细胞有补益作用；两者都能防止大脑机能衰退。枣子含糖量很高，亦有利补益大脑。</p>
+      <p>水果类</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;健脑水果首推柑橘、柠檬。柑橘含有大量的维生素B1、C，是优良的碱性食品。此外还有含维生素C较多的草莓、金橘、鲜枣等等。</p>
+      <p>天然药物类</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天然药物主要指中药。中药中最有助于人体大脑细胞发育的有人参、何首乌、枸杞和茯苓等。花卉类在可食的花卉中，菊花、南瓜花、玫瑰花有提高智商作用。云南省生长的一种灯盏花有增进大脑血流量的功效。其他类巧克力含有的可可碱在人体内能合成有利脑细胞生成的乙酰胆碱，有提高大脑活性作用。谷氨酸参与脑细胞的代谢，对改善和维持大脑机能有一定作用；而味精的主要成份是谷氨酸钠，即麸氨酸钠，进入人体胃肠会被分解成谷氨酸，被人体直接吸收。啤酒中谷氨酸量比较多且含复合维生素B。矿泉水中含少量能使人保持良好记忆力的镁。酿造醋有防止脑老化功效。绿茶，尤其是粗茶含有丰富的维生素C，也利于健脑。除此之外，麦胚油、棉籽油、米糠油均含有较多量的大脑细胞所需的营养素维生素E。总而言之，饮食健脑是建议大家从日常食品中汲取益智、健脑、延缓衰老的营养物质。膳食是每天必不可少的，故饮食健脑亦是简易可行的。持之以恒，必有成效。</p>
+      <p>谷物类</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;麦芽是补充大脑磷、钙质的食物，还含有能使人保持良好记忆的镁。麸皮亦是，麸皮面包是优良的健脑主食</p>
+      <p>水产类</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鱼肉可提供优质蛋白质、钙质，以及不饱和脂肪酸，还含有丰富的谷胱甘肽和大脑所需的氨基酸。尤其是沙丁鱼、大马哈鱼、鲐鱼均含较多的不饱和脂肪酸。鱼肉含有的各种氨基酸比例与人体需要量十分接近。青鱼鳞煮制成膏，有增强记忆力、控制脑细胞退化作用；鱼眼有助增强大脑机能。在所有鱼类中，沙丁鱼是最好的健脑食品。此外，海藻和紫菜含有丰富的胆碱，能增强记忆、防止脑衰退。1995年欧洲医生经研究发现，蛤蜊十分有益于大脑。虾皮与小鱼虾含钙量较多。</p>
+      <p>肉，蛋，奶类</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;常言道“吃啥补啥”，各种动物脑最有助人脑的生长发育。动物肝含有丰富的谷胱甘肽及大脑所需的氨基酸和复合维生素B。在畜、禽类中，以放养的禽肉、畜肉为佳，所含蛋白质高达20～30%，含脂质亦高，尤其是老禽肉熬煮成的汤，氨基酸含量多于当年生长的嫩禽肉肉汤，野禽更佳。鹌鹑肉健脑；肉鸽有增智益脑功效。鸡蛋含有的蛋白质高达14．7%，特别是蛋黄含有丰富的卵磷脂，对增强脑记忆提高大脑工作效率更为有益。牛奶含有优质蛋白质和大脑所需的氨基酸、钙质。牛奶中提炼成的干酪含有较多补大脑的磷、钙质。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蔬菜中较为补益大脑的首推菠菜和胡萝卜。菠菜含有较多的蛋白质、矿物质、维生素A和维生素B1、B2，是脑细胞代谢的优良营养晶，其叶绿素又有健脑益智作用。胡萝卜含有维生素A、维生素B以及大量钙，有辅助谷氨酸吸收的功效。含维生素C较多的蔬菜有山蒜、龙须菜、荷兰芹、柿子椒、辣椒、萝卜叶等。含钙量较高的蔬菜有金针菜、羊栖菜、荠菜、萝卜、葫芦、荷兰芹、紫苏等等。另外，卷心菜有填充脑髓功效。菌菇类中的蘑菇可帮助人体消除疲劳、提神和安神。</p>
+      <hr>
+      <h2 id="section-4">健康认识</h2>
+      <p>我们对于“健康饮食”的认识，可分为三个层次：</p>
+      <p>从物质的层面上</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人的共同业力（众生共通的业因），或相似的惯性，通常会形
+        成多数的经验，例如饮食，一定要吃环保的、有机的、营养均衡的食物等等，这就是营养学家所强调的、一个人必须摄取多少的蛋白质、醣类、脂肪、维生素、矿物质的知识</p>
+      <p>从心理的层面上</p>
+      <p>1.一个人的心情好坏，会影响到消化能力。例如忧郁会导致消化不良。消化不良，就表示吸收和分解的能力不好，那自然就会造成营养不良。相反的，一个人心情好，消化能力就好，营养也跟着好了。</p>
+      <p>2.保持良好的心情，会对健康比较有利。这是指对食物的分解利用而言的。那些比较注重环保、较有慈悲心、惯吃素食者，由于与环境的关系较为和谐，所以心情通常比较好，健康的比率自然也比较高。</p>
+      <hr>
+      <h2 id="section-5">饮食技巧</h2>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;美国堪萨斯州大学研究显示，肉类在烤、煎、炸等高温烹调时，会产生一种叫做杂环胺的物质。这种物质在体内蓄积，有诱发胃癌、肠癌等多种癌症的危险。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究人员将鲜牛肉和用调料腌过的牛肉烧烤后，对比两者的杂环胺含量，发现腌过的肉经高温烧烤后，所含的杂环胺比未经腌制的低40%以上。经过对多种调料的测试发现，用孜然、咖喱、迷迭香腌过的肉，高温烹调后产生的致癌物最少。因此，建议在烧烤、煎炸肉类前，放些孜然腌半小时，不仅味道好，还可减少致癌物的产生。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人们的日常生活离不开每日三餐，如何正常地饮食，使之更有利于人体健康、滋补养生，是人们所关注的问题。想要吃得健康，可不能忽略一些看起来很营养美味的食物，因为这些看起来让你流口水的食物，可能会因为吃错了某个部位而要了你的生命。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不管走到哪里，苹果绝对都是一个受欢迎的水果。与这份表单上其他的食物相似，苹果也含有氰化物，但含量不高。果肉里并不含什么有毒化学物质，但在苹果核里你会发现氰化物。把一个苹果核全吃了虽然不会致死，但也绝对对身体不好。当然，如果你吃太多的苹果核，（前提是要咀嚼并吞下）就有可能有并发症，所以也要注意咯。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尽管在许多国家番茄受热棒，但他们确实有毒。虽然果肉本身不含毒素，但其茎和叶却饱含一种叫做配糖生物碱的化学物质。在野生番茄里这种物质的含量更高，但人工种植的番茄还是多少有一些影响。这种东西会导致胃功能紊乱和焦虑紧张。茎和叶可以用作烹饪调味品，但必须在食用前去除。这种化学物质的效用很大，事实上，它往往用来驱虫。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;樱桃吃法最多的水果之一，生吃、烧煮、烤熟、作成果酱或糖果都可以，樱桃甚至可以配某些酒吃。尽管好处多多，但樱桃是有毒的。如果你吃樱桃的时候不假思索的咬开了核然后留在嘴里没有吐出来，你很可能就吞下了氢氰酸。一旦樱桃核被咀嚼或咬碎了，他就会自动产生氢氰酸。轻度中毒症状包括头痛、头晕、意识错乱、焦虑心慌和呕吐。大量的的氢氰酸会导致呼吸困难、高血压、心脏跳动过快以及肾衰竭。其他反应包括昏迷、抽搐，最严重的会导致呼吸系统衰竭致死。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多数人总是认为杏仁是一种坚果，但实际上它是种子，而且在全世界的烹饪界特别流行。和腰果数似，如果不经过某种形式加热的话，杏仁是剧毒的，而要去除毒性的主要是苦味杏仁，它富含氰化物，在许多国家，出售没有经过加工去除其毒素的杏仁是非法的。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小孩变得爱吃蔬菜</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;孩子不吃蔬菜容易缺乏维生素，家长不要用强迫或者诱骗的方式让孩子吃蔬菜，这只会让孩子更加反感。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;偏食的孩子很多，要么肉吃得少，要么菜吃得少。我们讲平衡膳食，营养均衡才能健康，特别对处于生长发育期的孩子更重要。但孩子如果不愿意吃菜，从谷类上如何弥补一些呢。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以从烹饪方法上想些办法。</p>
+      <p>1.像很多不愿意吃菜的孩子，但喜欢吃带馅的食物，对于这类孩子，我们可以给孩子做些饺子、包子等，但要多放几种蔬菜，比如说一次放两三种，像大头菜、白菜、韭菜、香菇、胡萝卜、洋葱等，都可以包到这些带馅儿食物中。最好是现吃现包，速冻的一些饺子，就肉类保存还可以，蔬菜营养素会流失更多，营养价值下降。其实为什么孩子都比较喜欢吃这类食物，就是饺子同时含有菜和肉，比较香，所以，菜也就愿意吃了。</p>
+      <p>2.可以给孩子打各种蔬菜汁，用这些蔬菜汁和面，变成彩色面，然后用这种菜汁面包饺子、做面条都可以。这样的饺子孩子也比较喜欢吃，特别是小孩子，颜色鲜艳会增加孩子的食欲。比如面里和些胡萝卜汁、大头菜汁、西红柿汁等。</p>
+      <p>3.可以经常给一些吃菜少的孩子做些热汤面，可以在面条里加些蔬菜，这样蔬菜的营养素会溶在汤里，让孩子喝些汤。虽然这种方式补充维生素比较有限。但是营养多一点是一点吧。</p>
+      <p>另外就是一些肉类吃得少的孩子。</p>
+      <p>肉类是我们孩子优质蛋白质的主要来源，如果肉类吃得少，最容易导致的就是蛋白质不足，会影响孩子的生长发育。</p>
+      <hr>
+    </div>
+  </div>
+</div>
+</body>
+
+
+</html>

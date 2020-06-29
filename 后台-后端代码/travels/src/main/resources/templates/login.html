@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        form{
+            width:270px;
+        }
+        input{
+            width: 70%;
+            background: #eee;
+        }
+        input:focus{
+            background: #fff;
+        }
+        form{
+            padding: 0 12px 12px;
+        }
+        label{
+            display: block;
+            padding-bottom:12px;
+        }
+        #img-vcode{
+            width: 56px;
+            height: 21px;
+            float:right;
+            position: relative;
+            top:2px;
+            left:-6px
+        }
+        .label-text{
+            width: 30%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="wrap">
+        <div id="header">
+            <div style="float: right;padding-top: 24px">2020/6/1</div>
+            <h1>小区后台管理系统</h1>
+        </div>
+        <div id="header-bar"></div>
+        <div id="content" style="height: 360px">
+            <img src="../static/img/timg.jpg" style="float: right;height: 320px">
+            <h2>登录</h2>
+            <form action="province/provincelist.html" method="post">
+                <label>
+                    <div class="label-text">账&emsp;号：</div>
+                    <input type="text" v-model="user.username" name="username">
+                </label>
+                <label>
+                    <div class="label-text">密&emsp;码：</div>
+                    <input type="password" v-model="user.password" name="password">
+                </label>
+                <img src="../static/img/vcode.png" id="img-vcode">
+                <label>
+                    <div class="label-text">验证码：</div>
+                    <input type="text" name="vcode" style="width: 100px">
+                </label>
+                <button type="button" @click="login">提 交</button>&emsp;
+                <a href="reg.html">去注册</a>
+            </form>
+        </div>
+        <div id="footer">
+            ABC@126.com
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script>
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            user:{}
+        },
+        methods:{
+            login(){//登录
+                axios.post("http://localhost:8989/user/login",this.user).then((res)=>{
+                    console.log(res.data);
+                    localStorage.setItem("userid",res.data.userId);
+                    if(res.data.state){
+                        alert(res.data.msg +",点击确定进入主页!")
+                        location.href='province/provincelist.html';
+                    }else{
+                        alert(res.data.msg);
+                    }
+                });
+            }
+        }
+    })
+
+</script>

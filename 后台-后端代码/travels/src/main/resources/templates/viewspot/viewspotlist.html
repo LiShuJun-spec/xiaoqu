@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <style>
+        table{
+            width: 100%;
+            margin-bottom: 15px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        th,td{
+            border: 1px solid #CBD6DE;
+            padding-left: 10px;
+            line-height: 28px;
+        }
+        th{
+            text-align: left;
+            background: linear-gradient(#edf2f5,#dce9f2,#edf2f5);
+            color:#467aa7;
+        }
+        tbody tr:nth-child(4n),tbody tr:nth-child(4n-1){
+            background: #f2f2f2;
+        }
+        #pages{
+            text-align: center;
+            padding: 8px 0;
+        }
+        .page{
+            min-width: 50px;
+            display: inline-block;
+        }
+        .viewspotimg{
+            width: 135px;
+            height: 135px;
+            margin-left: -10px;
+            display: block;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<div id="wrap">
+    <div id="header">
+        <div style="float: right;padding-top: 24px">
+            2020/6/1&emsp;
+            <a href="../login.html" style="color:#fff;float: right">安全退出</a>
+        </div>
+        <h1>小区后台管理系统</h1>
+    </div>
+    <div id="header-bar"></div>
+    <div id="content">
+        <h2>列表</h2>
+        <table>
+            <thead>
+            <tr>
+                <th width="14%">ID</th>
+                <th width="20%">菜品</th>
+                <th width="12%">印象图</th>
+                <th width="16%">上架时间</th>
+                <th width="10%">市价</th>
+                <th width="10%">会员价格</th>
+                <th width="18%">操作</th>
+            </tr>
+            </thead>
+            <tbody v-for="place in places">
+                <tr>
+                    <td rowspan="2" ><span v-text="place.id"/></td>
+                    <td rowspan="2"><span v-text="place.name"/></td>
+                    <td><img :src="'data:image/png;base64,'+place.picpath" class="viewspotimg"></td>
+                    <td><span v-text="place.hottime"/></td>
+                    <td><span v-text="place.hotticket"/></td>
+                    <td><span v-text="place.dimticket"/></td>
+                    <td style="text-align: center">
+                        <a href="javascript:;" @click="deletePlace(place.id)">删除</a><br>
+                        <a :href="'updateviewspot.html?id='+place.id">修改</a>
+                    </td>
+                </tr>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <div style="height: 56px;font-size: 14px;line-height: normal">
+                            <b style="color:#467aa7">简介：</b> <span v-text="place.placedes"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a :href="'addviewspot.html?id='+id"><button type="button">添加</button></a>&emsp;
+        <a href="../province/provincelist.html">返回菜品列表</a>
+        <div id="pages">
+            <a href="javascript:;" v-if="page>1" class="page" @click="findAllPage(page-1)">&lt;上一页</a>
+            <span v-for="index in totalPage">
+                 <a href="javascript:;" v-if="page==index"  class="page" v-text="index"></a>
+                 <a href="javascript:;" v-if="page!=index" @click="findAllPage(index)" class="page" v-text="index"></a>
+            </span>
+            <a href="javascript:;" class="page" v-if="page<totalPage" @click="findAllPage(page+1)">下一页&gt;</a>
+        </div>
+    </div>
+    <div id="footer">
+        ABC@126.com
+    </div>
+</div>
+</div>
+</body>
+</html>
+<script src="../../static/js/vue.js"></script>
+<script src="../../static/js/axios.min.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            places:[],
+            id:"",
+            totalPage:0,
+            page:1,
+        },
+        methods:{
+            findAllPage(index){//封装查询所有的函数
+                _this = this;
+                if(index){
+                    this.page = index;
+                }
+                axios.get("http://localhost:8989/place/findAllPlace?provinceId="+this.id+"&page="+this.page).then((res)=>{
+                    _this.places = res.data.places;
+                    _this.totalPage = res.data.totalPage;
+                    _this.page = res.data.page;
+                });
+            },
+            deletePlace(id){//删除景点信息
+                console.log(id);
+                if(confirm("确定要删除景点吗?")){
+                    axios.get("http://localhost:8989/place/delete?id="+id).then((res)=>{
+                        if(res.data.state){
+                            alert(res.data.msg+",点击确定刷新数据!!!");
+                            location.reload();
+                        }else{
+                            alert(res.data.msg);
+                        }
+                    });
+                }
+            }
+        },
+        created(){
+            let id = location.href.substring(location.href.indexOf("=")+1);
+            this.id = id;
+            this.findAllPage();
+        }
+    })
+
+</script>

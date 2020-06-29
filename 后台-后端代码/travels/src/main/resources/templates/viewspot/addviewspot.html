@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <style>
+        form{
+            width:270px;
+        }
+        input{
+            width: 64%;
+            background: #eee;
+        }
+        input:focus{
+            background: #fff;
+        }
+        form{
+            padding: 0 12px 12px;
+        }
+        label{
+            display: block;
+            padding-bottom:12px;
+        }
+        .label-text{
+            width: 36%;
+            float: left;
+        }
+        #upload-tip{
+            border: 1px dashed #d9d9d9;
+            width: 135px;
+            height: 135px;
+            line-height: 135px;
+            cursor: pointer;
+            font-size: 36px;
+            color:#d9d9d9;
+        }
+        #img-show{
+            width: 135px;
+            height: 135px;
+            display: block;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+    </style>
+    <script>
+        function imgfileChange() {
+            var upload_tip = document.getElementById("upload-tip");
+            var img_show = document.getElementById("img-show");
+            var imgfile = document.getElementById("imgfile");
+            var freader = new FileReader();
+            freader.readAsDataURL(imgfile.files[0]);
+            freader.onload = function (e) {
+                img_show.src = e.target.result;
+                img_show.style.display = "inline";
+                upload_tip.style.display = "none";
+            };
+
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <div id="wrap">
+        <div id="header">
+            <div style="float: right;padding-top: 24px">2020/6/1</div>
+            <h1>小区后台管理系统</h1>
+        </div>
+        <div id="header-bar"></div>
+        <div id="content" style="height: 480px">
+            <img src="../../static/img/timg.jpg" style="float: right;height: 320px">
+            <h2>添加菜品</h2>
+            <form action="viewspotlist.html" method="post">
+                <label>
+                    <div class="label-text">菜&emsp;&emsp;品：</div>
+                    <input type="text" v-model="place.name" name="vname">
+                </label>
+                <label>
+                    <div class="label-text">印象图片：</div>
+                    <div style="text-align: center;padding-left: 36%">
+                        <div id="upload-tip">+</div>
+                        <img src="" alt="" id="img-show" style="display: none">
+                        <input type="file" id="imgfile" ref="myFile"  style="display: none" onchange="imgfileChange()">
+                    </div>
+                </label>
+                <label>
+                    <div class="label-text">上架时间：</div>
+                    <input type="text" v-model="place.hottime">
+                </label>
+                <label>
+                    <div class="label-text">市价：</div>
+                    <input type="text" v-model="place.hotticket"  >
+                </label>
+                <label>
+                    <div class="label-text">会员价格：</div>
+                    <input type="text" v-model="place.dimticket">
+                </label>
+                <label>
+                    <div class="label-text">菜品描述：</div>
+                    <input type="text" v-model="place.placedes">
+                </label>
+                <label>
+                    <div class="label-text">所属餐厅：</div>
+                    <select v-model="place.provinceid">
+                        <option  v-for="(pro,index) in provinces" :value="pro.id" v-text="pro.name"></option>
+                    </select>
+                </label>
+                <button type="button" @click="savePlaceInfo">提 交</button>&emsp;
+                <a :href="'viewspotlist.html?id='+id">返回</a>
+            </form>
+        </div>
+        <div id="footer">
+            ABC@126.com
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../../static/js/vue.js"></script>
+<script src="../../static/js/axios.min.js"></script>
+<script>
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            provinces:[],
+            place:{},
+            id:"",
+        },
+        methods:{
+            savePlaceInfo(){//保存景点的方法
+                console.log(this.place);
+                let myFile = this.$refs.myFile;
+                let files = myFile.files;
+                let file  = files[0];
+                let formData = new FormData();
+                formData.append("pic",file);
+                formData.append("name",this.place.name);
+                formData.append("hottime",this.place.hottime);
+                formData.append("hotticket",this.place.hotticket);
+                formData.append("dimticket",this.place.dimticket);
+                formData.append("placedes",this.place.placedes);
+                formData.append("provinceid",this.place.provinceid);
+                //axios
+                axios({
+                    method:'post',
+                    url:'http://localhost:8989/place/save',
+                    data:formData,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((res)=>{
+                    console.log(res.data);
+                    if(res.data.state){
+                        alert(res.data.msg+",点击确定回到景点列表");
+                        location.href="./viewspotlist.html?id="+this.place.provinceid;
+                    }else{
+                        alert(res.data.msg+",点击确定回到景点列表");
+                        location.href="./viewspotlist.html?id="+this.place.provinceid;
+                    }
+                });
+            },
+            findAllProvinces(){
+                _this = this;
+                axios.get("http://localhost:8989/province/findByPage?rows=35").then((res)=>{
+                    console.log(res.data.provinces);
+                    _this.provinces = res.data.provinces;
+                });
+            }
+        },
+        created(){
+            //查询所有省份信息
+            this.findAllProvinces();
+            //获取省份id
+            let id = location.href.substring(location.href.indexOf("=")+1);
+            this.id = id;
+        }
+    })
+
+</script>
